@@ -22,7 +22,7 @@
     export default{
         data(){
             return{
-
+                img: require('../../img/vue.png')
             }
         }
     }

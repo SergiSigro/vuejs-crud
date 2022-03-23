@@ -1,6 +1,6 @@
 <template>
     <div id="all-products">
-        <h1>All Products</h1>
+        <h1>I love</h1><img src=img width="15%">
 
         <p><router-link :to="{ name: 'create_product' }" class="btn btn-primary">Create Product</router-link></p>
 
@@ -19,7 +19,7 @@
             </thead>
 
             <tbody>
-                <tr v-for="product in products">
+                <tr :v-for="product in products">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
