@@ -25,13 +25,14 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/products', function(req, res) {
+app.get('/api/products/:city', function(req, res) {
     fs.readFile(PRODUCTS_FILE, function(err, data) {
         if (err) {
             console.error(err);
             process.exit(1);
         }
-        res.json(JSON.parse(data));
+        let products = JSON.parse(data);
+        res.json(products.filter(product => product.city === req.params.city));
     });
 });
 

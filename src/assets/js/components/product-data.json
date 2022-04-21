@@ -2,26 +2,31 @@
     {
         "id": 1,
         "name": "Fire TV Stick",
-        "price": "32.99"
+        "price": "32.99",
+        "city": "Barcelona"
     },
     {
         "id": 2,
         "name": "Amazon Echo Dot",
-        "price": "49.99"
+        "price": "49.99",
+        "city": "Barcelona"
     },
     {
         "id": 3,
         "name": "Amazon Echo, Black",
-        "price": "149.99"
+        "price": "149.99",
+        "city": "Barcelona"
     },
     {
         "id": 4,
         "name": "Fire Tablet, 7",
-        "price": "47.49"
+        "price": "47.49",
+        "city": "Badalona"
     },
     {
         "id": 5,
         "name": "Kindle Paperwhitefff",
-        "price": "104.99"
+        "price": "104.99",
+        "city": "Badalona"
     }
 ]
