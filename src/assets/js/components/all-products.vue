@@ -1,6 +1,6 @@
 <template>
     <div id="all-products">
-        <h1>I love</h1><img src=img width="15%">
+        <h1>I love <img src='src/assets/img/vue.png' width="15%"> </h1>
 
         <p><router-link :to="{ name: 'create_product' }" class="btn btn-primary">Create Product</router-link></p>
 
@@ -19,7 +19,7 @@
             </thead>
 
             <tbody>
-                <tr :v-for="product in products">
+                <tr v-for="product in products" :key="product.id">
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>

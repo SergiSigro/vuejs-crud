@@ -1,6 +1,6 @@
 <template>
     <div id="notifications">
-        <div v-for="notification in notifications" :class="getNotificationClass(notification)">
+        <div v-for="(notification,index) in notifications" :key="index" :class="getNotificationClass(notification)">
             {{ notification.message }}
         </div>
     </div>

@@ -25,6 +25,16 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.get('/api/products', function(req, res) {
+    fs.readFile(PRODUCTS_FILE, function(err, data) {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
 app.get('/api/products/:city', function(req, res) {
     fs.readFile(PRODUCTS_FILE, function(err, data) {
         if (err) {
