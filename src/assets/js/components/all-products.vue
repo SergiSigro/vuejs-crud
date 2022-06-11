@@ -1,6 +1,6 @@
 <template>
     <div id="all-products">
-        <h1>I love <img src='src/assets/img/vue.png' width="15%"> </h1>
+        <h1>Products from {{ city }} </h1>
 
         <p><router-link :to="{ name: 'create_product' }" class="btn btn-primary">Create Product</router-link></p>
 
@@ -36,6 +36,8 @@
 <script>
 
     export default{
+        props: ['city'],
+
         data(){
             return{
                 products: [],
@@ -57,7 +59,7 @@
         methods: {
             fetchProductData: function()
             {
-                this.$http.get('http://localhost:3000/api/products').then((response) => {
+                this.$http.get('http://localhost:3000/api/products/' + this.city).then((response) => {
                     this.products = response.body;
                     this.originalProducts = this.products;
                 }, (response) => {

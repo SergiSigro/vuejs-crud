@@ -8,6 +8,7 @@ Vue.use(VueResource);
 
 import App from './App.vue'
 
+const Welcome = require('./assets/js/components/welcome.vue');
 const AllProducts = require('./assets/js/components/all-products.vue');
 const CreateProduct = require('./assets/js/components/create-product.vue');
 const EditProduct = require('./assets/js/components/edit-product.vue');
@@ -15,9 +16,16 @@ const DeleteProduct = require('./assets/js/components/delete-product.vue');
 
 const routes = [
     {
-        name: 'all_products',
+        name: 'welcome',
         path: '/',
-        component: AllProducts
+        component: Welcome,
+        props: true
+    },
+    {
+        name: 'all_products',
+        path: '/products/:city',
+        component: AllProducts,
+        props: true
     },
     {
         name: 'create_product',

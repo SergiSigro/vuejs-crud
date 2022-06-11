@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <search-city></search-city>
         <div id="page">
             <transition name="fade">
                 <router-view></router-view>
@@ -18,12 +19,11 @@
 </style>
 
 <script>
+    import Search from './assets/js/components/search.vue';
 
-    export default{
-        data(){
-            return{
-                img: require('./assets/img/vue.png')
-            }
-        }
+    export default {
+      components: {
+          'searchCity' : Search
+      }
     }
 </script>
