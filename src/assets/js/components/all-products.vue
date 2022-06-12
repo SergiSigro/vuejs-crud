@@ -1,11 +1,19 @@
 <template>
-    <div id="all-products">
+    <div id="all-products " >
+        
         <h1>Products from {{ city }} </h1>
 
-        <p><router-link :to="{ name: 'create_product' }" class="btn btn-primary">Create Product</router-link></p>
-
-        <div class="form-group">
-            <input type="text" name="search" v-model="productSearch" placeholder="Search products" class="form-control" v-on:keyup="searchProducts">
+        <div class="panel panel-default " style="stylesheet">
+            <div class="panel-heading">Products</div>
+            <div class="panel-body">
+                <div class="row" >
+                <div class="col-sm-4" v-for="product in products" :key="product.id">
+                    <img src="../../img/test_coffee.jpg" alt="Avatar" style="width:50%">
+                    <h4><b>{{product.name}}</b></h4>
+                    <p>{{product.price}}</p>
+                </div>
+                </div>
+            </div>
         </div>
 
         <table class="table table-hover">
@@ -34,8 +42,10 @@
 </template>
 
 <script>
+import deleteProduct from './delete-product.vue';
 
     export default{
+  components: { deleteProduct },
         props: ['city'],
 
         data(){
