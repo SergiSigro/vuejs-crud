@@ -1,32 +1,50 @@
 [
     {
         "id": 1,
-        "name": "Fire TV Stick",
-        "price": "32.99",
+        "name": "Espreso",
+        "price": "1.00$",
         "city": "Barcelona"
     },
     {
         "id": 2,
-        "name": "Amazon Echo Dot",
-        "price": "49.99",
+        "name": "Americano",
+        "price": "1.25$",
         "city": "Barcelona"
     },
     {
         "id": 3,
-        "name": "Amazon Echo, Black",
-        "price": "149.99",
+        "name": "Cappuccino",
+        "price": "2.00$",
         "city": "Barcelona"
     },
     {
         "id": 4,
-        "name": "Fire Tablet, 7",
-        "price": "47.49",
-        "city": "Badalona"
+        "name": "Mocha",
+        "price": "2.50$",
+        "city": "Barcelona"
     },
     {
         "id": 5,
-        "name": "Kindle Paperwhitefff",
-        "price": "104.99",
+        "name": "Irish Coffee",
+        "price": "3.00$",
+        "city": "Barcelona"
+    },
+    {
+        "id": 6,
+        "name": "Espreso",
+        "price": "1.00$",
         "city": "Badalona"
+    },
+    {
+        "id": 7,
+        "name": "Americano",
+        "price": "1.25$",
+        "city": "Badalona"
+    },
+    {
+        "id": 8,
+        "name": "Latte",
+        "price": "1.50$",
+        "city": "Barcelona"
     }
 ]

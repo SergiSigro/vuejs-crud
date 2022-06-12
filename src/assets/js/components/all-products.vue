@@ -1,43 +1,23 @@
 <template>
     <div id="all-products " >
         
-        <h1>Products from {{ city }} </h1>
+        <h2>Products from {{ city.charAt(0).toUpperCase() + city.slice(1) }} </h2>
 
         <div class="panel panel-default " style="stylesheet">
-            <div class="panel-heading">Products</div>
-            <div class="panel-body">
+            <div class="panel-heading"><b>RESULTS</b></div>
+            <div class="panel-body ">
                 <div class="row" >
                 <div class="col-sm-4" v-for="product in products" :key="product.id">
                     <img src="../../img/test_coffee.jpg" alt="Avatar" style="width:50%">
                     <h4><b>{{product.name}}</b></h4>
                     <p>{{product.price}}</p>
+                    <a href="#cart_button" class="btn btn-info btn-lg" style="margin-bottom: 10px">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+                    </a>
                 </div>
                 </div>
             </div>
         </div>
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Actions</td>
-            </tr>
-            </thead>
-
-            <tbody>
-                <tr v-for="product in products" :key="product.id">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td>
-                        <router-link :to="{name: 'edit_product', params: { id: product.id }}" class="btn btn-primary">Edit</router-link>
-                        <router-link :to="{name: 'delete_product', params: { id: product.id }}" class="btn btn-danger">Delete</router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 

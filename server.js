@@ -33,7 +33,7 @@ app.get('/api/products/:city', function(req, res) {
         }
         let products = JSON.parse(data);
         res.json(products.filter(function(product){
-            return product.city === req.params.city
+            return product.city.toLowerCase() === req.params.city.toLowerCase()
         }));
     });
 });
