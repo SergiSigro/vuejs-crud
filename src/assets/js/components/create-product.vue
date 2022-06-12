@@ -1,6 +1,6 @@
 <template>
     <div id="create-product">
-        <h1>Create Product</h1>
+        <h1>Buy Product</h1>
 
         <p><router-link :to="{ name: 'all_products' }">Return to products</router-link></p>
 
@@ -14,16 +14,21 @@
 
             <div class="form-group">
                 <label name="product_name">Name</label>
-                <input type="text" class="form-control" v-model="product.name" id="product_name" required>
+                <input type="text" class="form-control" disabled v-model="product.name" id="product_name" required>
             </div>
 
             <div class="form-group">
                 <label name="product_price">Price</label>
-                <input type="text" class="form-control" v-model="product.price" id="product_price" required>
+                <input type="text" class="form-control" disabled v-model="product.price" id="product_price" required>
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary">Create</button>
+                <label name="product_qty">Quantity</label>
+                <input type="text" class="form-control" v-model="product.qty" id="product_qty" required>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Buy</button>
             </div>
         </form>
     </div>
@@ -39,8 +44,20 @@
                 notifications:[]
             }
         },
-
+        created: function(){
+            this.getProduct();
+        },
         methods: {
+            getProduct: function()
+            {
+                this.$http.get('http://localhost:3000/api/product/' + this.$route.params.id).then((response) => {
+                    this.product = response.body,
+                    this.product.qty = 1;
+                }, (response) => {
+
+                });
+            },
+
             addProduct: function()
             {
                 // Validation
@@ -55,8 +72,19 @@
                 } else {
                     this.product.price = this.product.price;
                 }
+                var qty = parseFloat(this.product.qty);
+                if(isNaN(qty))
+                {
+                    this.notifications.push({
+                        type: 'danger',
+                        message: 'Quantity must be a number'
+                    });
+                    return false;
+                } else {
+                    this.product.qty = this.product.qty;
+                }
 
-                this.$http.post('http://localhost:3000/api/product/create', this.product, {
+                this.$http.post('http://localhost:3000/api/product/buy', this.product, {
                     headers : {
                         'Content-Type' : 'application/json'
                     }

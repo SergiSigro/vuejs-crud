@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var app = express();
 
 var PRODUCTS_FILE = path.join(__dirname, 'src/assets/js/components/product-data.json');
+var CART_FILE = path.join(__dirname, 'src/assets/js/components/cart.json');
+
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -60,27 +62,28 @@ app.get('/api/product/:id', function(req, res) {
     });
 });
 
-app.post('/api/product/create', function(req, res) {
+app.post('/api/product/buy', function(req, res) {
 
-    fs.readFile(PRODUCTS_FILE, function(err, data) {
+    fs.readFile(CART_FILE, function(err, data) {
         if (err) {
             console.error(err);
             process.exit(1);
         }
-        var products = JSON.parse(data);
+        var cart = JSON.parse(data);
 
-        var newProduct = {
-            id: Date.now(),
+        var newBuy = {
             name: req.body.name,
-            price: req.body.price,
+            pricePerUnit: req.body.price,
+            qty: req.body.qty,
+            total: req.body.price * req.body.qty
         };
-        products.push(newProduct);
-        fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 4), function(err) {
+        cart.push(newBuy);
+        fs.writeFile(CART_FILE, JSON.stringify(cart, null, 4), function(err) {
             if (err) {
                 console.error(err);
                 process.exit(1);
             }
-            res.json(products);
+            res.json(cart);
         });
     });
 });

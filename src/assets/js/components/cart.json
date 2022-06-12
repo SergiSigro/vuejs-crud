@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Fire TV Stick",
+        "pricePerUnit": "32.99",
+        "qty": 1,
+        "total": 32.99
+    },
+    {
+        "name": "Fire TV Stick",
+        "pricePerUnit": "32.99",
+        "qty": 1,
+        "total": 32.99
+    },
+    {
+        "name": "Fire TV Stick",
+        "pricePerUnit": "32.99",
+        "qty": "5",
+        "total": 164.95000000000002
+    },
+    {
+        "name": "Fire TV Stick",
+        "pricePerUnit": "32.99",
+        "qty": "50",
+        "total": 1649.5
+    }
+]

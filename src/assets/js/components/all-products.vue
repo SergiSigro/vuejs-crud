@@ -2,8 +2,6 @@
     <div id="all-products">
         <h1>Products from {{ city }} </h1>
 
-        <p><router-link :to="{ name: 'create_product' }" class="btn btn-primary">Create Product</router-link></p>
-
         <div class="form-group">
             <input type="text" name="search" v-model="productSearch" placeholder="Search products" class="form-control" v-on:keyup="searchProducts">
         </div>
@@ -24,8 +22,7 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
                     <td>
-                        <router-link :to="{name: 'edit_product', params: { id: product.id }}" class="btn btn-primary">Edit</router-link>
-                        <router-link :to="{name: 'delete_product', params: { id: product.id }}" class="btn btn-danger">Delete</router-link>
+                        <router-link :to="{name: 'buy_product', params: { id: product.id }}" class="btn btn-primary">Buy</router-link>
                     </td>
                 </tr>
             </tbody>
