@@ -22,6 +22,10 @@ body
   border-radius: 5px 5px 0 0;
 }
 
+.input-qty{
+    float: right
+}
+
 #logo{
   max-width:10%;
   float: left;

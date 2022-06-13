@@ -30,7 +30,6 @@
                 cartProducts:[],
                 products: [],
                 originalProducts: [],
-                cartProducts: [],
                 productSearch: ''
             }
         },
@@ -47,24 +46,26 @@
                 this.$http.get('http://localhost:3000/api/products/' + this.city).then((response) => {
                     this.products = response.body;
                     this.originalProducts = this.products;
+                    
                 }, (response) => {
 
                 });
+                this.cartProducts = this.$store.state.cartProducts;
             },
             
             addToCart: function(product){
                 let found = false;
 
                 // Add the item or increase qty
+                console.log(this.cartProducts);
 			    let itemInCart = this.cartProducts.filter(item => item.id===product.id);
 			    let isItemInCart = itemInCart.length > 0;
 
                 if (isItemInCart === false) {
-                    product.total = product.qty * product.price;
-                    this.cartProducts.push(product);
+                    this.cartProducts.push(Object.assign({}, product));
                 } else {
-                    itemInCart[0].qty += product.qty;
-                    itemInCart[0].total = itemInCart[0].qty * product.price;
+                    let qty = parseInt(product.qty)
+                    itemInCart[0].qty = parseInt(itemInCart[0].qty) + qty;
                 }
 			    product.qty = 1;
                 this.$store.commit("updateStoreCartProducts", this.cartProducts)

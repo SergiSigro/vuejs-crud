@@ -16,7 +16,7 @@
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td style="width:120px">QTY:
-                        <input v-model="product.qty" class="form-control input-qty" type="number" min="1">
+                        <input v-model="product.qty" type="number" class="form-control"  min="1">
                     </td>
                     <td>{{ product.price }}</td>
                 </tr>
@@ -72,12 +72,8 @@
 
         methods: {
             getData: function(){
-                this.$http.get('http://localhost:3000/api/cart').then((response) => {
-                    this.cartProducts = response.body;
-                }, (response) => {
-
-                });
-                //this.cartProducts = this.$route.params.cartProducts;
+                
+                this.cartProducts = this.$store.state.cartProducts;
                 
             },
             
