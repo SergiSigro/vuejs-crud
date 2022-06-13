@@ -9,3 +9,8 @@ body
     background: #FFF;
     padding: 3rem;
 }
+.input-qty 
+{
+    width: 60px;
+    float: right
+}

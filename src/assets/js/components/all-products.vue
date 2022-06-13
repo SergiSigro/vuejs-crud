@@ -21,8 +21,15 @@
                     <td>{{ product.id }}</td>
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
+                    <td style="width:120px">QTY:
+                        <input v-model="product.qty" class="form-control input-qty" type="number" min="1">
+                    </td>
                     <td>
-                        <router-link :to="{name: 'buy_product', params: { id: product.id }}" class="btn btn-primary">Buy</router-link>
+                        <button @click="addToCart(product)" class="btn btn-primary">Buy</button>
+                    </td>
+                    <td>
+                        <router-link :to="{name: 'cart', params: { cartProducts: cartProducts }}" class="btn btn-primary">Cart</router-link>
+                        <router-link :to="{name: 'edit_product', params: { id: product.id }}" class="btn btn-primary">Edit</router-link>
                     </td>
                 </tr>
             </tbody>
@@ -31,7 +38,7 @@
 </template>
 
 <script>
-
+    
     export default{
         props: ['city'],
 
@@ -39,6 +46,7 @@
             return{
                 products: [],
                 originalProducts: [],
+                cartProducts: [],
                 productSearch: ''
             }
         },
@@ -63,7 +71,12 @@
 
                 });
             },
-
+            getCartProducts: function(){
+                let cart = this.$route.params.cartProducts
+                if(!isNaN(cart)){
+                    this.cartProducts = cart
+                }
+            },
             searchProducts: function()
             {
                 if(this.productSearch == '')
@@ -83,6 +96,39 @@
                 }
 
                 this.products = searchedProducts;
+            },
+            addToCart: function(productToAdd){
+
+                // Add the item or increase qty
+                let productInCart = this.cartProducts.filter(product => product.id===productToAdd.id);
+                let isProductInCart = productInCart.length > 0;
+
+                if (isProductInCart === false) {
+                    
+                    this.cartProducts.push(productToAdd);
+                } else {
+                    productInCart[0].qty += productToAdd.qty;
+                    
+                }
+                this.$http.post('http://localhost:3000/api/product/buy/' + productToAdd.id, productToAdd, {
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    }
+                }).then((response) => {
+                    this.notifications.push({
+                        type: 'success',
+                        message: 'Product created successfully'
+                    });
+                }, (response) => {
+                    this.notifications.push({
+                        type: 'error',
+                        message: 'Product not created'
+                    });
+                });
+                productToAdd.qty = 1;
+            },
+            goToCart: function(){
+
             }
         }
     }

@@ -22,8 +22,18 @@
     import Search from './assets/js/components/search.vue';
 
     export default {
-      components: {
-          'searchCity' : Search
-      }
+        data(){
+            return{
+                cartProducts: []
+            };
+        },
+
+        components: {
+            'searchCity' : Search
+        },
+
+        methods: {
+            
+        }
     }
 </script>

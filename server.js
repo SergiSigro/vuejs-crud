@@ -62,7 +62,22 @@ app.get('/api/product/:id', function(req, res) {
     });
 });
 
-app.post('/api/product/buy', function(req, res) {
+app.get('/api/cart', function(req, res) {
+
+    fs.readFile(CART_FILE, function(err, data) {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+
+        var json = JSON.parse(data);
+
+        res.json(json);
+        
+    });
+});
+
+app.post('/api/product/buy/:id', function(req, res) {
 
     fs.readFile(CART_FILE, function(err, data) {
         if (err) {
@@ -70,21 +85,40 @@ app.post('/api/product/buy', function(req, res) {
             process.exit(1);
         }
         var cart = JSON.parse(data);
-
-        var newBuy = {
-            name: req.body.name,
-            pricePerUnit: req.body.price,
-            qty: req.body.qty,
-            total: req.body.price * req.body.qty
-        };
-        cart.push(newBuy);
-        fs.writeFile(CART_FILE, JSON.stringify(cart, null, 4), function(err) {
-            if (err) {
-                console.error(err);
-                process.exit(1);
+        let found = false;
+        
+        if(cart.length >= 1){
+            for(var i = 0; i <= cart.length; i++){
+                if(cart[i]['id'] == req.params.id){
+                    found = true;
+                    cart[i].qty += req.body.qty;
+                    fs.writeFile(CART_FILE, JSON.stringify(cart, null, 4), function(err) {
+                        if (err) {
+                            console.error(err);
+                            process.exit(1);
+                        }
+                        res.json(cart);
+                    });
+                    break;
+                }
             }
-            res.json(cart);
-        });
+        }
+        if(!found){
+            var newBuy = {
+                id: req.body.id,
+                name: req.body.name,
+                price: req.body.price,
+                qty: req.body.qty,
+            };
+            cart.push(newBuy);
+            fs.writeFile(CART_FILE, JSON.stringify(cart, null, 4), function(err) {
+                if (err) {
+                    console.error(err);
+                    process.exit(1);
+                }
+                res.json(cart);
+            });
+        }  
     });
 });
 
@@ -100,12 +134,9 @@ app.patch('/api/product/edit/:id', function(req, res) {
         {
             if(products[i]['id'] == req.params.id)
             {
-                var product = products[i];
-                product.name = req.body.name;
-                product.price = req.body.price;
+                products[i].name = req.body.name;
+                products[i].price = req.body.price;
 
-                products.splice(i, 1);
-                products.push(product);
 
                 fs.writeFile(PRODUCTS_FILE, JSON.stringify(products, null, 4), function(err) {
                     if (err) {
