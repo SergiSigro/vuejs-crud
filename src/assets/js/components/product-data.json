@@ -2,49 +2,57 @@
     {
         "id": 1,
         "name": "Espreso",
-        "price": "1.00$",
+        "price": 1.00,
+        "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 2,
         "name": "Americano",
-        "price": "1.25$",
+        "price": 1.25,
+        "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 3,
         "name": "Cappuccino",
-        "price": "2.00$",
+        "price": 2.00,
+        "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 4,
         "name": "Mocha",
-        "price": "2.50$",
+        "price": 2.50,
+        "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 5,
         "name": "Irish Coffee",
-        "price": "3.00$",
+        "price": 3.00,
+        "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 6,
         "name": "Espreso",
-        "price": "1.00$",
+        "price": 1.00,
+        "qty":1,
         "city": "Badalona"
     },
     {
         "id": 7,
         "name": "Americano",
-        "price": "1.25$",
+        "price": 1.25,
+        "qty":1,
         "city": "Badalona"
     },
     {
         "id": 8,
         "name": "Latte",
-        "price": "1.50$",
+        "price": 1.50,
+        "qty":1,
         "city": "Barcelona"
     }
 ]

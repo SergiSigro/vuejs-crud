@@ -24,6 +24,12 @@
     export default {
       components: {
           'searchCity' : Search
-      }
+      },
+       mounted(){
+            this.$root.$on('request_from_search', () => {
+                console.log("Request captured at root?");
+                toAllProducts();
+            });
+        }
     }
 </script>

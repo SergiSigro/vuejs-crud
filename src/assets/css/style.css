@@ -13,7 +13,6 @@ body
 .col-sm-4 {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 33%;
   border-radius: 5px;
   text-align: center;
 }
@@ -58,6 +57,16 @@ body {
 }
 
 .topnav router-link {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav btn btn-light{
   float: left;
   display: block;
   color: black;
