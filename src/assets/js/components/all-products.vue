@@ -1,39 +1,22 @@
 <template>
-    <div id="all-products">
-        <h1>Products from {{ city }} </h1>
+    <div id="all-products " >
+        
+        <h2>Products from {{ city.charAt(0).toUpperCase() + city.slice(1) }} </h2>
 
-        <div class="form-group">
-            <input type="text" name="search" v-model="productSearch" placeholder="Search products" class="form-control" v-on:keyup="searchProducts">
+        <div class="panel panel-default " style="stylesheet">
+            <div class="panel-heading"><b>RESULTS</b></div>
+            <div class="panel-body ">
+                <div class="row">
+                <div class="col-sm-4" v-for="product in products" :key="product.id">
+                    <img src="../../img/test_coffee.jpg" alt="Avatar" style="width:50%">
+                    <h4><b>{{product.name}}</b></h4>
+                    <p>{{product.price}}</p>
+                    <p class="text-center"><input v-model="product.qty" type="number" class="form-control" placeholder="Qty" min="1"/></p>
+                    <button @click="addToCart(product)" class="btn btn-sm btn-primary" style="margin-bottom: 10px"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
+                </div>
+                </div>
+            </div>
         </div>
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <td>ID</td>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Actions</td>
-            </tr>
-            </thead>
-
-            <tbody>
-                <tr v-for="product in products" :key="product.id">
-                    <td>{{ product.id }}</td>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.price }}</td>
-                    <td style="width:120px">QTY:
-                        <input v-model="product.qty" class="form-control input-qty" type="number" min="1">
-                    </td>
-                    <td>
-                        <button @click="addToCart(product)" class="btn btn-primary">Buy</button>
-                    </td>
-                    <td>
-                        <router-link :to="{name: 'cart', params: { cartProducts: cartProducts }}" class="btn btn-primary">Cart</router-link>
-                        <router-link :to="{name: 'edit_product', params: { id: product.id }}" class="btn btn-primary">Edit</router-link>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 
@@ -44,6 +27,7 @@
 
         data(){
             return{
+                cartProducts:[],
                 products: [],
                 originalProducts: [],
                 cartProducts: [],
@@ -67,12 +51,25 @@
 
                 });
             },
-            getCartProducts: function(){
-                let cart = this.$route.params.cartProducts
-                if(!isNaN(cart)){
-                    this.cartProducts = cart
+            
+            addToCart: function(product){
+                let found = false;
+
+                // Add the item or increase qty
+			    let itemInCart = this.cartProducts.filter(item => item.id===product.id);
+			    let isItemInCart = itemInCart.length > 0;
+
+                if (isItemInCart === false) {
+                    product.total = product.qty * product.price;
+                    this.cartProducts.push(product);
+                } else {
+                    itemInCart[0].qty += product.qty;
+                    itemInCart[0].total = itemInCart[0].qty * product.price;
                 }
+			    product.qty = 1;
+                this.$store.commit("updateStoreCartProducts", this.cartProducts)
             },
+
             searchProducts: function()
             {
                 if(this.productSearch == '')
@@ -93,39 +90,6 @@
 
                 this.products = searchedProducts;
             },
-            addToCart: function(productToAdd){
-
-                // Add the item or increase qty
-                let productInCart = this.cartProducts.filter(product => product.id===productToAdd.id);
-                let isProductInCart = productInCart.length > 0;
-
-                if (isProductInCart === false) {
-                    
-                    this.cartProducts.push(productToAdd);
-                } else {
-                    productInCart[0].qty += productToAdd.qty;
-                    
-                }
-                this.$http.post('http://localhost:3000/api/product/buy/' + productToAdd.id, productToAdd, {
-                    headers : {
-                        'Content-Type' : 'application/json'
-                    }
-                }).then((response) => {
-                    this.notifications.push({
-                        type: 'success',
-                        message: 'Product created successfully'
-                    });
-                }, (response) => {
-                    this.notifications.push({
-                        type: 'error',
-                        message: 'Product not created'
-                    });
-                });
-                productToAdd.qty = 1;
-            },
-            goToCart: function(){
-
-            }
         }
     }
 </script>

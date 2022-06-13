@@ -22,18 +22,14 @@
     import Search from './assets/js/components/search.vue';
 
     export default {
-        data(){
-            return{
-                cartProducts: []
-            };
-        },
-
-        components: {
-            'searchCity' : Search
-        },
-
-        methods: {
-            
+      components: {
+          'searchCity' : Search
+      },
+       mounted(){
+            this.$root.$on('request_from_search', () => {
+                console.log("Request captured at root?");
+                toAllProducts();
+            });
         }
     }
 </script>

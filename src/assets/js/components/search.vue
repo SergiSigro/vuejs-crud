@@ -1,21 +1,21 @@
 <template>
-  <div class="container">
-    <form @submit.prevent="searchCity">
-        <div class="form-group">
-            <label name="city">City</label>
-            <input type="text" class="form-control" v-model="cityName" id="city">
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary">Search</button>
-        </div>
-    </form>
+  <div class="topnav">
+    <img id="logo" src="../../img/logo.png">
+    <router-link :to="{ name: 'welcome' }">Home</router-link>
+    <router-link :to="{ name: 'cart' }">Cart <span class="glyphicon glyphicon-shopping-cart"></span></router-link>
+    <div class="search-container">
+      <form @submit.prevent="searchCity">
+        <input type="text" placeholder="City.." name="search" v-model="cityName" id="city">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
   </div>
 </template>
 <script>
     export default {
         methods: {
           searchCity() {
-              this.$router.push( { name: 'all_products', params: { city: this.cityName }} )
+            this.$router.push( { name: 'all_products', params: { city: this.cityName }} )
           },
         },
         data() {
