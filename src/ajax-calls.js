@@ -40,6 +40,7 @@ $(document).ready(function(){
         /*append the DIV element as a child of the autocomplete container:*/
         document.getElementById("autocomplete").appendChild(a);
         /*for each item in the array...*/
+        console.log(arr.length)
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
             console.log(arr[i].city)
