@@ -38,6 +38,10 @@
         {
             this.fetchProductData();
         },
+        updated: function()
+        {
+            this.fetchProductData();
+        },
         
         methods: {
             fetchProductData: function()

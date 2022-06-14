@@ -10,6 +10,8 @@ import App from './App.vue';
 
 import store from "./store";
 
+var $           = require('jquery');
+
 const Welcome = require('./assets/js/components/welcome.vue');
 const Cart = require('./assets/js/components/cart.vue');
 const AllProducts = require('./assets/js/components/all-products.vue');

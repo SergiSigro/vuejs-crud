@@ -6,6 +6,7 @@ var app = express();
 
 var PRODUCTS_FILE = path.join(__dirname, 'src/assets/js/components/product-data.json');
 var CART_FILE = path.join(__dirname, 'src/assets/js/components/cart.json');
+var CITY_FILE = path.join(__dirname,'src/assets/js/components/city.json');
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -13,6 +14,7 @@ app.set('port', (process.env.PORT || 3000));
 app.use('/', express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/jquery',express.static(path.join(__dirname+'/node_modules/jquery/dist/')));
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
@@ -26,6 +28,20 @@ app.use(function(req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
+
+app.get('/api/city', function(req, res){
+    fs.readFile(CITY_FILE, function(err, data){
+        if(err){
+            console.err(err);
+            process.exit(1);
+            res.json({msg:'error'});
+        }else{
+            let cities = JSON.parse(data);
+            res.json({msg:'success', data:cities});
+        }
+        
+    })
+})
 
 app.get('/api/products/:city', function(req, res) {
     fs.readFile(PRODUCTS_FILE, function(err, data) {
