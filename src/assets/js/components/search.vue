@@ -17,6 +17,7 @@
     export default {
         methods: {
           searchCity() {
+            this.cityName = document.getElementById("city").value
             this.$router.push( { name: 'all_products', params: { city: this.cityName }} )
           },
         },

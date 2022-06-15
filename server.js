@@ -7,6 +7,7 @@ var app = express();
 var PRODUCTS_FILE = path.join(__dirname, 'src/assets/js/components/product-data.json');
 var CART_FILE = path.join(__dirname, 'src/assets/js/components/cart.json');
 var CITY_FILE = path.join(__dirname,'src/assets/js/components/city.json');
+var IMG_DIR = path.join(__dirname, 'src/assets/img');
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -42,6 +43,21 @@ app.get('/api/city', function(req, res){
         
     })
 })
+
+app.get('/img/:img', function(req, res) {
+    console.log("AH")
+    fs.readdir(IMG_DIR, function(err, files){
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+        files.forEach(function (file) {
+            // Do whatever you want to do with the file
+            console.log(file);
+            //res
+        });
+    });
+});
 
 app.get('/api/products/:city', function(req, res) {
     fs.readFile(PRODUCTS_FILE, function(err, data) {

@@ -1,21 +1,27 @@
 <template>
     <div id="all-products " >
         
-        <h2>Products from {{ city.charAt(0).toUpperCase() + city.slice(1) }} </h2>
+        <h1 style="font-family: 'Brush Script MT', cursive;">{{ city.charAt(0).toUpperCase() + city.slice(1) }}'s store </h1>
 
-        <div class="panel panel-default " style="stylesheet">
-            <div class="panel-heading"><b>RESULTS</b></div>
-            <div class="panel-body ">
+        <div class="panel panel-success " v-if="products.length != 0" style="stylesheet">
+            <div class="panel-heading"><b style="font-family: Brush Script MT; font-size: large;">Coffees:</b></div>
+            <div class="panel-body " style="background: #E9EBE7;">
                 <div class="row">
-                <div class="col-sm-4" v-for="product in products" :key="product.id">
-                    <img src="../../img/test_coffee.jpg" alt="Avatar" style="width:50%">
-                    <h4><b>{{product.name}}</b></h4>
-                    <p>{{product.price}}</p>
-                    <p class="text-center"><input v-model="product.qty" type="number" class="form-control" placeholder="Qty" min="1"/></p>
-                    <button @click="addToCart(product)" class="btn btn-sm btn-primary" style="margin-bottom: 10px"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
+                <div class="col-sm-6 col-lg-4" v-for="product in products" :key="product.id">
+                    <img :src="findImage(product)" style="width:50%">
+                    <h4 style=" text-align: center;"><b style="color: white;font-family: Brush Script MT; font-size: xx-large;">{{product.name}} / {{product.type}}</b></h4>
+                    <p id="description">{{product.description}}</p>
+                    <p style="color: white; align-text: left;">{{product.time}}</p>
+                    <p style="color: white;">{{product.price}}$</p>
+                    <p class="text-center"><input v-model="product.qty" type="number" class="form-control" placeholder="Qty" min="1"></p>
+                    <button @click="addToCart(product)" class="btn btn-sm btn-primary" style="margin-bottom: 20px; background-color: #DC582A; border: #DC582A"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
                 </div>
                 </div>
             </div>
+        </div>
+        <div class="panel panel-danger" v-else>
+            <div class="panel-heading"><b style="font-family: Brush Script MT; font-size: xx-large;">Oops!</b></div>
+            <div class="panel-body"><h4>Unfortunately we do not have any store in {{city.charAt(0).toUpperCase() + city.slice(1)}}.</h4></div>
         </div>
     </div>
 </template>
@@ -47,6 +53,7 @@
             fetchProductData: function()
             {
                 this.$http.get('http://localhost:3000/api/products/' + this.city).then((response) => {
+                    console.log(response.body)
                     this.products = response.body;
                     this.originalProducts = this.products;
                     
@@ -74,6 +81,10 @@
                 this.$store.commit("updateStoreCartProducts", this.cartProducts)
             },
 
+            findImage:function(product){
+                return require('../../img/'+ product.name + '.png')
+            },
+
             searchProducts: function()
             {
                 if(this.productSearch == '')
@@ -94,6 +105,6 @@
 
                 this.products = searchedProducts;
             },
-        }
+        },
     }
 </script>

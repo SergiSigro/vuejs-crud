@@ -2,6 +2,9 @@
     {
         "id": 1,
         "name": "Espreso",
+        "type":"Hot Coffee",
+        "description": "An espresso shot can be served solo or used as the foundation of most coffee drinks, like lattes and macchiatos.",
+        "time": "6-9 Min.",
         "price": 1.00,
         "qty":1,
         "city": "Barcelona"
@@ -9,6 +12,9 @@
     {
         "id": 2,
         "name": "Americano",
+        "type":"Hot Coffee",
+        "description": "With a similar flavor to black coffee, the americano consists of an espresso shot diluted in hot water.",
+        "time": "6-9 Min.",
         "price": 1.25,
         "qty":1,
         "city": "Barcelona"
@@ -16,6 +22,9 @@
     {
         "id": 3,
         "name": "Cappuccino",
+        "type":"Hot Coffee",
+        "description": "Cappuccino is a latte made with more foam than steamed milk, often with a sprinkle of cocoa powder or cinnamon on top.",
+        "time": "6-9 Min.",
         "price": 2.00,
         "qty":1,
         "city": "Barcelona"
@@ -23,13 +32,19 @@
     {
         "id": 4,
         "name": "Mocha",
+        "type":"Hot Coffee",
+        "description": "For all you chocolate lovers out there, you will fall in love with a mocha (or maybe you already have).",
+        "time": "6-9 Min.",
         "price": 2.50,
         "qty":1,
         "city": "Barcelona"
     },
     {
         "id": 5,
-        "name": "Irish Coffee",
+        "name": "Irish",
+        "type":"Hot Coffee",
+        "description": "Irish coffee consists of black coffee, whiskey and sugar, topped with whipped cream. It will warm you up.",
+        "time": "6-9 Min.",
         "price": 3.00,
         "qty":1,
         "city": "Barcelona"
@@ -37,6 +52,9 @@
     {
         "id": 6,
         "name": "Espreso",
+        "type":"Hot Coffee",
+        "description": "An espresso shot can be served solo or used as the foundation of most coffee drinks, like lattes and macchiatos.",
+        "time": "6-9 Min.",
         "price": 1.00,
         "qty":1,
         "city": "Badalona"
@@ -44,6 +62,9 @@
     {
         "id": 7,
         "name": "Americano",
+        "type":"Hot Coffee",
+        "description": "With a similar flavor to black coffee, the americano consists of an espresso shot diluted in hot water.",
+        "time": "6-9 Min.",
         "price": 1.25,
         "qty":1,
         "city": "Badalona"
@@ -51,6 +72,9 @@
     {
         "id": 8,
         "name": "Latte",
+        "type":"Hot Coffee",
+        "description": "As the most popular coffee drink out there, the latte is comprised of a shot of espresso and steamed milk with just a touch of foam.",
+        "time": "6-9 Min.",
         "price": 1.50,
         "qty":1,
         "city": "Barcelona"
