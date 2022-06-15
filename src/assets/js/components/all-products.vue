@@ -10,7 +10,7 @@
                 <div class="col-sm-4" v-for="product in products" :key="product.id">
                     <img src="../../img/test_coffee.jpg" alt="Avatar" style="width:50%">
                     <h4><b>{{product.name}}</b></h4>
-                    <p>{{product.price}}</p>
+                    <p>${{product.price}}</p>
                     <p class="text-center"><input v-model="product.qty" type="number" class="form-control" placeholder="Qty" min="1"/></p>
                     <button @click="addToCart(product)" class="btn btn-sm btn-primary" style="margin-bottom: 10px"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
                 </div>
