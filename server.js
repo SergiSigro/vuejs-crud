@@ -9,12 +9,12 @@ var app = express();
 var PRODUCTS_FILE = path.join(__dirname, 'src/assets/js/components/product-data.json');
 
 
-
 app.set('port', (process.env.PORT || 3000));
 
 app.use('/', express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/jquery',express.static(path.join(__dirname+'/node_modules/jquery/dist/')));
 
 
 // Additional middleware which will set headers that we need on each request.
@@ -74,6 +74,8 @@ var paymentPaypal = (paymentID, execute_payment_json, payment, cb) => {
        }
     });
 }
+
+
 
 app.get('/api/products/:city', function(req, res) {
     fs.readFile(PRODUCTS_FILE, function(err, data) {

@@ -5,11 +5,13 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
+    "jquery": "^3.6.0",
     "vue": "^2.0.1",
     "vuex": "^3.6.2",
     "paypal-rest-sdk": "^1.8.1"
@@ -26,5 +28,17 @@
     "vue-router": "^2.0.1",
     "webpack": "^2.1.0-beta.25",
     "webpack-dev-server": "^2.1.0-beta.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergiSigro/vuejs-crud.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergiSigro/vuejs-crud/issues"
+  },
+  "homepage": "https://github.com/SergiSigro/vuejs-crud#readme"
 }

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="father">
         <search-city></search-city>
         <div id="page">
             <transition name="fade">
