@@ -14,7 +14,7 @@
                     <p style="color: white; align-text: left;">{{product.time}}</p>
                     <p style="color: white;">{{product.price}}$</p>
                     <p class="text-center"><input v-model="product.qty" type="number" class="form-control" placeholder="Qty" min="1"></p>
-                    <button @click="addToCart(product)" class="btn btn-sm btn-primary" style="margin-bottom: 20px; background-color: #DC582A; border: #DC582A"><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
+                    <button @click="addToCart(product)" class="button" ><span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</button>
                 </div>
                 </div>
             </div>
@@ -53,7 +53,6 @@
             fetchProductData: function()
             {
                 this.$http.get('http://localhost:3000/api/products/' + this.city).then((response) => {
-                    console.log(response.body)
                     this.products = response.body;
                     this.originalProducts = this.products;
                     

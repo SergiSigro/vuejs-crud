@@ -75,6 +75,28 @@ input[type=submit] {
   color: white;
   
 }
+.col-sm-6 .button{
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #04AA6D;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.col-sm-6 .button:hover {background-color: #3e8e41}
+
+.col-sm-6 .button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 
 .col-sm-6 img {
   margin-top: 20px;
