@@ -13,9 +13,6 @@ import store from "./store";
 const Welcome = require('./assets/js/components/welcome.vue');
 const Cart = require('./assets/js/components/cart.vue');
 const AllProducts = require('./assets/js/components/all-products.vue');
-const BuyProduct = require('./assets/js/components/create-product.vue');
-const EditProduct = require('./assets/js/components/edit-product.vue');
-const DeleteProduct = require('./assets/js/components/delete-product.vue');
 
 const routes = [
     {
@@ -31,27 +28,12 @@ const routes = [
         props: true
     },
     {
-        name: 'buy_product',
-        path: '/products/:city/buy/:id',
-        component: BuyProduct
-    },
-    {
         name: 'cart',
         path: '/cart',
         component: Cart,
         props: true
-    },
-    
-    {
-        name: 'edit_product',
-        path: '/products/edit/:id',
-        component: EditProduct
-    },
-    {
-        name: 'delete_product',
-        path: '/products/delete/:id',
-        component: DeleteProduct
     }
+    
 ];
 var router = new VueRouter({ routes: routes, mode: 'history' });
 
