@@ -31,6 +31,10 @@
                     <td></td>
                     <td></td>
                 </tr>
+                <tr v-show="cartProducts.length === 0">
+                    <td></td>
+                    <td class="text-right"><b>The cart is empty</b></td>
+                </tr>
 
             </tbody>
         </table>
