@@ -7,6 +7,7 @@ var paypal = require('paypal-rest-sdk')
 var app = express();
 
 var PRODUCTS_FILE = path.join(__dirname, 'src/assets/js/components/product-data.json');
+var CITY_FILE = path.join(__dirname,'src/assets/js/components/city.json');
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -33,8 +34,8 @@ app.use(function(req, res, next) {
 //PayPal
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': 'YOUR CLIENT ID HERE',
-    'client_secret': 'YOUR CLIENT SECRET HERE'
+    'client_id': 'AXs7KG3vY1Nw6yoRH1Md0J7uNxPadQ03yxSvAcLidkzSVkM5dvcRtgwRz1tT4d8gHsfn6plKeVLcldL9',
+    'client_secret': 'EGEK9TEUQznOffaS0cSFBgfsz4SRflNe8lQ985mhexphUR9KUYZ6-i-aH-u37hjnRCrTPBfUix92aF6U'
 });
 
 // start payment process
@@ -74,6 +75,20 @@ var paymentPaypal = (paymentID, execute_payment_json, payment, cb) => {
        }
     });
 }
+
+app.get('/api/city', function(req, res){
+    fs.readFile(CITY_FILE, function(err, data){
+        if(err){
+            console.err(err);
+            process.exit(1);
+            res.json({msg:'error'});
+        }else{
+            let cities = JSON.parse(data);
+            res.json({msg:'success', data:cities});
+        }
+        
+    })
+})
 
 
 

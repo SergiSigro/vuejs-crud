@@ -1,6 +1,6 @@
 <template>
     <div id="cart_products">
-        <h1>Cart</h1>
+        <h1 style="font-family: Brush Script MT; font-size: xx-large;">Cart</h1>
         <p><router-link :to="{ name: 'welcome'}">Return to home page</router-link></p>
         <table class="table table-hover">
             <thead>
@@ -108,7 +108,7 @@
         },
         mounted(){
            let  client = {
-                  sandbox: 'YOUR CLIENT ID HERE',
+                  sandbox: 'AXs7KG3vY1Nw6yoRH1Md0J7uNxPadQ03yxSvAcLidkzSVkM5dvcRtgwRz1tT4d8gHsfn6plKeVLcldL9',
            }
            let  payment = (data, actions) => {
                 // Make a call to the REST api to create the payment

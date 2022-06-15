@@ -33,10 +33,9 @@
 
         data(){
             return{
+                currentCity:'',
                 cartProducts:[],
                 products: [],
-                originalProducts: [],
-                productSearch: ''
             }
         },
 
@@ -46,7 +45,9 @@
         },
         updated: function()
         {
-            this.fetchProductData();
+            if(this.city != this.currentCity){
+                this.fetchProductData();
+            }
         },
         
         methods: {
@@ -54,7 +55,7 @@
             {
                 this.$http.get('http://localhost:3000/api/products/' + this.city).then((response) => {
                     this.products = response.body;
-                    this.originalProducts = this.products;
+                    this.currentCity = this.city
                     
                 }, (response) => {
 
